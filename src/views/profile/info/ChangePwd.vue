@@ -33,7 +33,7 @@
                     </div>
                 </el-form-item>
                 <el-form-item>
-                    <el-button>确认修改</el-button>
+                    <el-button @click="submit">确认修改</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -42,7 +42,10 @@
 </template>
 
 <script>
-    import {getCode} from "network/captcha";
+
+
+    import {CheckCaptcha, getCode} from "network/account";
+    import {checkOldPwd} from "../../../network/account";
 
     export default {
         name: "ChangePwd",
@@ -141,7 +144,21 @@
                     }, 1000)
                 }
             },
+            submit() {
+                //检查短信验证码
+                CheckCaptcha(this.formData.mobile, this.formData.code).then( res => {
+                    console.log(res);
+                })
+                //检查原密码
+                checkOldPwd(this.formData.oldPwd).then( res => {
 
+                })
+
+                //确认修改
+
+
+
+            }
         }
     }
 </script>

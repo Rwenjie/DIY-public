@@ -10,11 +10,15 @@ import Router from 'vue-router'
 
 const Home = () => import('../views/home/Home');
 const Cart = () => import('../views/cart/Cart');
-const Profile =() => import('../views/profile/Profile')
+const Profile =() => import('../views/profile/Profile');
 const Orders = () => import('../views/order/Orders');
+const Article = () => import('../views/article/Article')
 
 const ChangePwd = () => import('../views/profile/info/ChangePwd');
 const Detail = () => import('../views/profile/info/Detail');
+
+const FollowArticles =() => import('../views/follow/ArticleList');
+const FollowUsers = () => import('../views/follow/UserList');
 
 const Goods = () => import('../views/profile/item/Goods');
 const ArticleList = () => import('../views/profile/article/ArticleList');
@@ -33,6 +37,11 @@ const routes = [
         path: '/home',
         name: "home",
         component: Home
+    },
+    {
+        path: '/article',
+        name: "article",
+        component: Article
     },
     {
         path: '/cart',
@@ -82,6 +91,16 @@ const routes = [
                 path: 'article/editor',
                 name:'Editor',
                 component: Editor
+            },
+            {
+                path: 'follow/article',
+                name:'FollowArticles',
+                component: FollowArticles
+            },
+            {
+                path: 'follow/user',
+                name:'FollowUsers',
+                component: FollowUsers
             },
 
         ]

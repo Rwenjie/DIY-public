@@ -7,6 +7,14 @@ import './plugins/element.js'
 import './plugins/quill'
 import vuetify from './plugins/vuetify'
 import MyComponent from "./components/common/MyComponent";
+import waterfall from 'vue-waterfall2'
+import './plugins/awesome-swiper'
+import './plugins/video-playe'
+import './plugins/vuetify'
+import './plugins/area-linkage'
+
+
+Vue.use(waterfall);
 
 Vue.config.productionTip = false
 

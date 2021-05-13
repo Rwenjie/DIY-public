@@ -279,6 +279,24 @@ export default {
   },
   methods: {
     submit() {
+
+      const goods = {
+        title: this.goods.title, // 标题
+        subTitle: this.goods.subTitle, //商品卖点
+        article: this.goods.article,
+        packingList: this.goods.packingList,//包装清单
+        description: this.goods.description,//商品描述
+        afterService: this.goods.afterService,//售后服务
+        payMethod: JSON.stringify(this.goods.payMethod),
+        images: JSON.stringify(this.goods.images),
+        skus: this.goods.skus
+      };
+      const skus = {
+
+      };
+      console.log(goods);
+      console.log(this.goods.skus);
+
       submitGoods(goods).then( res => {
         console.log(res);
       })
@@ -293,7 +311,7 @@ export default {
     },
     uploadSuccess(res, file) {
       const image = {name: file.name, url: res.data}
-      this.goods.images.push(image);
+      this.goods.images.push(image.url);
       //this.$bus.$emit("imageUrls", this.imageUrl);
       //将照片信息保存到Vuex
      /* this.$store.dispatch("addImages", {
@@ -386,6 +404,44 @@ export default {
 
   },
   watch: {
+    oldGoods: {
+      deep: true,
+      handler(val) {
+        if (!this.isEdit) {
+          Object.assign(this.goods, {
+            categories: null, // 商品分类信息
+            brandId: 0, // 品牌id信息
+            title: "", // 标题
+            subTitle: "", // 子标题
+            spuDetail: {
+              packingList: "", // 包装列表
+              afterService: "", // 售后服务
+              description: "" // 商品描述
+            }
+          });
+          this.specs = [];
+          this.specialSpecs = [];
+        } else {
+          this.goods = Object.deepCopy(val);
+
+          // 先得到分类名称
+          const names = val.cname.split("/");
+          // 组织商品分类数据
+          this.goods.categories = [
+            { id: val.cid1, name: names[0] },
+            { id: val.cid2, name: names[1] },
+            { id: val.cid3, name: names[2] }
+          ];
+
+          // 将skus处理成map
+          const skuMap = new Map();
+          this.goods.skus.forEach(s => {
+            skuMap.set(s.indexes, s);
+          });
+          this.goods.skus = skuMap;
+        }
+      }
+    },
 
   },
   computed: {

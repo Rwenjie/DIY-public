@@ -8,9 +8,8 @@
 
 <template>
     <div id="profile">
-        fdsfg
-        <el-container>
-            <el-aside style="border: 1px solid red" width="200px">
+        <el-container >
+            <el-aside style="border: 1px solid red;" width="250px">
                 <v-card
                         class="mx-auto"
                         width="300">
@@ -26,7 +25,8 @@
                         <!--一级-->
                         <v-list-group
                                 :value="true"
-                                v-for="item in items"
+                                v-for="(item, id) in items"
+                                v-key="id"
                                 prepend-icon="mdi-account-circle">
                             <template v-slot:activator>
                                 <v-list-item-title>{{item.title}}</v-list-item-title>
@@ -59,7 +59,7 @@
 
             </el-aside>
 
-            <el-main style="border: 1px solid red">
+            <el-main style="border: 1px solid red;">
                 <el-breadcrumb separator-class="el-icon-arrow-right" >
                     <el-breadcrumb-item >{{item1}}</el-breadcrumb-item>
                     <el-breadcrumb-item>{{item2}}</el-breadcrumb-item>
@@ -97,9 +97,12 @@
                     },
                     {
                         action: "ab-testing",
-                        title: "收藏夹",
-                        path:"/start",
-                        items: [{ title: "收藏店铺", path: "/" }]
+                        title: "我的关注",
+                        path:"/follow",
+                        items: [
+                            { title: "关注的文章", path: "/article" },
+                            { title: "关注的用户", path: "/user" },
+                        ]
                     },
                     {
                         action: "ab-testing",

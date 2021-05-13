@@ -20,7 +20,7 @@ const state = {
   profile: {
     userId: null,
     username: null,
-    profileUrl: 'https://rwenjie-blog.oss-cn-hangzhou.aliyuncs.com/div/member/profile/default%20avatar.png',
+    profileUrl: 'https://rwenjie-blog.oss-cn-hangzhou.aliyuncs.com/diy-shop/default%20avatar.png',
     miToke: null,
     mobile: null,
     openId: null,
@@ -46,10 +46,7 @@ const store = new Vuex.Store({
 
   },
   actions: {
-    //登录成功后获取用户信息
-    /*        getUserDetail(context) {
 
-            },*/
     //用户登录成功后保存信息和改变登录后的状态
     loginSuccess(context) {
       userInfo().then( res=> {
